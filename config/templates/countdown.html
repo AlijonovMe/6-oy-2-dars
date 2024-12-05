@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teskari sanoq</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 8px 15px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+        }
+        .content {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .content h1 {
+            font-size: 36px;
+            color: #333;
+        }
+        .content p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+        .countdown-container {
+            margin-top: 40px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .countdown {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+        .countdown h2 {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">My Website</div>
+        <div>
+            <a href="/">Asosiy Sahifa</a>
+            <a href="/timer">Timer</a>
+            <a href="/calculator">Kalkulyator</a>
+            <a href="/calendar">Kalendar</a>
+            <a href="/webhook">Webhook qilish</a>
+            <a href="/countdown">Teskari sanoq</a>
+            <a href="/color-generator">Ranglar generatori</a>
+            <a href="/screen-size">Ekran o'chami</a>
+            <a href="/show-picture">Rasm tanlash</a>
+            <a href="/contact">Bog'lanish</a>
+        </div>
+    </div>
+
+    <div class="countdown-container">
+        <h2>Teskari Sanoq</h2>
+        <div class="countdown" id="countdown">00:00:00</div>
+    </div>
+
+    <script>
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            let countdownTime = 60 * 60 * 5; // 5 soat (5 soat = 5 * 60 * 60)
+
+            const interval = setInterval(() => {
+                const hours = Math.floor(countdownTime / 3600);
+                const minutes = Math.floor((countdownTime % 3600) / 60);
+                const seconds = countdownTime % 60;
+
+                countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                countdownTime--;
+
+                if (countdownTime < 0) {
+                    clearInterval(interval);
+                    countdownElement.textContent = "Teskari sanog'ingiz tugadi!";
+                }
+            }, 1000);
+        }
+        startCountdown();
+    </script>
+
+</body>
+</html>

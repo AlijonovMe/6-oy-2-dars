@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranglar generatori</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 8px 15px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000; /* Qop qora rang */
+        }
+        .content {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .content h1 {
+            font-size: 36px;
+            color: #333;
+        }
+        .content p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">My Website</div>
+        <div>
+            <a href="/">Asosiy Sahifa</a>
+            <a href="/timer">Timer</a>
+            <a href="/calculator">Kalkulyator</a>
+            <a href="/calendar">Kalendar</a>
+            <a href="/webhook">Webhook qilish</a>
+            <a href="/countdown">Teskari sanoq</a>
+            <a href="/color-generator">Ranglar generatori</a>
+            <a href="/screen-size">Ekran o'chami</a>
+            <a href="/show-picture">Rasm tanlash</a>
+            <a href="/contact">Bog'lanish</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Ranglar Generatori</h1>
+        <p>Tugmani bosganda, sahifa fon rangi tasodifiy o'zgartiriladi.</p>
+        <div class="button-container">
+            <button onclick="changeBackgroundColor()">Fon Rangini O'zgartirish</button>
+        </div>
+    </div>
+
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeBackgroundColor() {
+            document.body.style.backgroundColor = getRandomColor();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalendar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 8px 15px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .calendar {
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .calendar-header button {
+            padding: 10px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .calendar-header button:hover {
+            background-color: #0056b3;
+        }
+        .month-year {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 5px;
+            margin-top: 20px;
+        }
+        .calendar-days div {
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            background-color: #f4f4f9;
+            border-radius: 5px;
+        }
+        .calendar-days div:hover {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .calendar-days .inactive {
+            color: #ccc;
+        }
+        .calendar-days .today {
+            background-color: #ff6347;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">My Website</div>
+        <div>
+            <a href="/">Asosiy Sahifa</a>
+            <a href="/timer">Timer</a>
+            <a href="/calculator">Kalkulyator</a>
+            <a href="/calendar">Kalendar</a>
+            <a href="/webhook">Webhook qilish</a>
+            <a href="/countdown">Teskari sanoq</a>
+            <a href="/color-generator">Ranglar generatori</a>
+            <a href="/screen-size">Ekran o'chami</a>
+            <a href="/show-picture">Rasm tanlash</a>
+            <a href="/contact">Bog'lanish</a>
+        </div>
+    </div>
+
+    <div class="calendar">
+        <div class="calendar-header">
+            <button id="prevMonth">&lt;</button>
+            <div class="month-year" id="monthYear">Dekabr 2024</div>
+            <button id="nextMonth">&gt;</button>
+        </div>
+        <div class="calendar-days" id="calendarDays"></div>
+    </div>
+
+    <script>
+        const monthNames = [
+            'Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun',
+            'Iyul', 'Avgust', 'Sentabr', 'Oktyabr', 'Noyabr', 'Dekabr'
+        ];
+
+        const currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        function renderCalendar() {
+            const monthYearText = document.getElementById('monthYear');
+            const calendarDays = document.getElementById('calendarDays');
+
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+            const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
+            const totalDaysInMonth = lastDayOfMonth.getDate();
+
+            monthYearText.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+            calendarDays.innerHTML = '';
+
+            for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.classList.add('inactive');
+                calendarDays.appendChild(emptyDiv);
+            }
+
+            for (let day = 1; day <= totalDaysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.textContent = day;
+                dayDiv.classList.add('day');
+
+                if (day === currentDate.getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
+                    dayDiv.classList.add('today');
+                }
+
+                calendarDays.appendChild(dayDiv);
+            }
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        });
+
+        renderCalendar();
+    </script>
+</body>
+</html>

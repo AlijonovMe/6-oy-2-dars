@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bog'lanish</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 8px 15px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .content {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .content h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: none;
+            height: 100px;
+        }
+        .form-group button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            text-align: center;
+            font-size: 16px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">My Website</div>
+        <div>
+            <a href="/">Asosiy Sahifa</a>
+            <a href="/timer">Timer</a>
+            <a href="/calculator">Kalkulyator</a>
+            <a href="/calendar">Kalendar</a>
+            <a href="/webhook">Webhook qilish</a>
+            <a href="/countdown">Teskari sanoq</a>
+            <a href="/color-generator">Ranglar generatori</a>
+            <a href="/screen-size">Ekran o'chami</a>
+            <a href="/show-picture">Rasm tanlash</a>
+            <a href="/contact">Bog'lanish</a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Biz bilan bog'laning</h1>
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="name">Ism:</label>
+                <input type="text" id="name" name="name" placeholder="Ismingizni kiriting" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Emailingizni kiriting" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Xabar:</label>
+                <textarea id="message" name="message" placeholder="Xabaringizni yozing" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Yuborish</button>
+            </div>
+        </form>
+        <div class="message" id="form-message"></div>
+    </div>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                document.getElementById('form-message').textContent = 'Xabaringiz muvaffaqiyatli yuborildi!';
+                this.reset();
+            } else {
+                document.getElementById('form-message').textContent = 'Iltimos, barcha maydonlarni to‘ldiring!';
+            }
+        });
+    </script>
+</body>
+</html>
